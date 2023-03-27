@@ -36,25 +36,51 @@ print(display(pacman=(1,1),pastilha=(1,6),obstaculos=fronteira | l | c ,path=[])
 print(modelo(pacman=(1,1),pastilha=(1,6))) """
 
 
-def modelo(pacman,pastilha):
-        xpacman=pacman[0]
-        ypacman=pacman[1]
-        xpastilha=pastilha[0]
-        ypastilha=pastilha[1]
-        maiorx=max(xpacman,xpastilha)
-        maiory=max(ypacman,ypastilha)
-        menorx=min(xpacman,xpastilha)
-        menory=min(ypacman,ypastilha)
-        maiores=(maiorx,maiory)
-        nlinhas=maiorx
-        ncolunas=maiory
-        grid = [['.'] * ncolunas for i in range(nlinhas)]   
-        for nlinhas in grid:
-                print(' '.join([str(elem) for elem in nlinhas]))
+def modelo(pacman, pastilha, obstaculos, path=[]):
+
+        pacmanX,pacmanY=pacman
+        osXs={x for (x,_) in obstaculos | {pastilha, pacman}}
+        minX=min(osXs)
+        maxX=max(osXs)
+        osYs={y for (_,y) in obstaculos | {pastilha, pacman}}
+        minY=min(osYs)
+        maxY=max(osYs)
+        output=""
+        for j in range(minY,maxY+1):
+                for i in range(minX,maxX+1):
+                        if pacman ==(i,j):
+                                ch = '@'
+                        elif pastilha==(i,j):
+                                ch = "*"
+                        elif (i,j) in obstaculos:
+                                ch = "#"
+                        elif (i,j) in path:
+                                ch = '+'
+                        else:
+                                ch = "."
+                        output += ch + " "
+                output += "\n"
+        print(output)
+        #xpacman=pacman[0]
+        #ypacman=pacman[1]
+        #xpastilha=pastilha[0]
+        #ypastilha=pastilha[1]
+        #xobstaculos=obstaculos[0]
+        #yobstaculos=obstaculos[1]
+        #maiorx=max(xpacman,xpastilha)
+        #maiory=max(ypacman,ypastilha)
+        #menorx=min(xpacman,xpastilha)
+        #menory=min(ypacman,ypastilha)
+        #maiores=(maiorx,maiory)
+        #nlinhas=maiorx
+        #ncolunas=maiory
+        #grid = [['.'] * ncolunas for i in range(nlinhas)]   
+        #for nlinhas in grid:
+                #print(' '.join([str(elem) for elem in nlinhas]))
                 
                 
        # return  grid
-          
+        
         
         
         
