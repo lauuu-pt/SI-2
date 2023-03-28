@@ -13,13 +13,13 @@ def actions(self, state):
         x, y = state
         return [act for act in self.directions.keys() if (x+self.directions[act][0],y+self.directions[act][1]) not in self.obstacles]
  
-pacman=(1,1)
+pacman=(1,3)
 pastilha=(1,6)
 l = line(2,2,1,0,6)
 c = line(2,3,0,1,4)
 fronteira = quadro(0,0,10)
 obstaculos=fronteira | l | c   
-print(display(pacman=(1,1),pastilha=(1,6),obstaculos=fronteira | l | c ,path=[]))
+print(display(pacman=(1,3),pastilha=(1,6),obstaculos=fronteira | l | c ,path=[]))
 
 """ def modelo(pacman,pastilha):
         xpacman=pacman[0]
@@ -37,7 +37,10 @@ print(modelo(pacman=(1,1),pastilha=(1,6))) """
 
 
 def modelo(pacman, pastilha, obstaculos, path=[]):
-
+        xpacman=pacman[0]
+        ypacman=pacman[1]
+        xpastilha=pastilha[0]
+        ypastilha=pastilha[1]
         pacmanX,pacmanY=pacman
         osXs={x for (x,_) in obstaculos | {pastilha, pacman}}
         minX=min(osXs)
@@ -45,6 +48,7 @@ def modelo(pacman, pastilha, obstaculos, path=[]):
         osYs={y for (_,y) in obstaculos | {pastilha, pacman}}
         minY=min(osYs)
         maxY=max(osYs)
+        outputaux=""
         output=""
         for j in range(minY,maxY+1):
                 for i in range(minX,maxX+1):
@@ -58,9 +62,36 @@ def modelo(pacman, pastilha, obstaculos, path=[]):
                                 ch = '+'
                         else:
                                 ch = "."
-                        output += ch + " "
-                output += "\n"
+                        outputaux += ch + " "
+                outputaux += "\n"
+        print(outputaux)
+        for row in outputaux.split("\n"):
+                for char in row:
+                        if char == "@":
+                                output += char + " "
         print(output)
+
+                                
+                        
+                
+
+
+        #for j in range(xpacman-1,xpacman+2):
+                #for i in range(ypacman-1, ypacman+2):
+                        #if pacman ==(i,j):
+                                #ch = '@'
+                        #elif pastilha==(i,j):
+                                #ch = "*"
+                        #elif (i,j) in obstaculos:
+                                #ch = "#"
+                        #elif (i,j) in path:
+                                #ch = '+'
+                        #else:
+                                #ch = "."
+                        #output += ch + " "
+                #output += "\n"
+        
+        
         #xpacman=pacman[0]
         #ypacman=pacman[1]
         #xpastilha=pastilha[0]
@@ -84,7 +115,7 @@ def modelo(pacman, pastilha, obstaculos, path=[]):
         
         
         
-print(modelo(pacman=(1,1),pastilha=(1,6)))     
+#print(modelo(pacman=(1,3),pastilha=(1,6), obstaculos=fronteira | l | c, path=[]))     
         
 
         
