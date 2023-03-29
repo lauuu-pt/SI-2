@@ -1,3 +1,4 @@
+
 from searchPlus import *
 from p2_aux import *
 
@@ -103,55 +104,48 @@ def modelo(pacman, obstaculos):
 
 def planeia_online(pacman, pastilha, obstaculos):
     print('MUNDO')
-    display(pacman,pastilha,obstaculos)
+    display(pacman, pastilha, obstaculos)
     print('MODELO')
-        
-    es = modelo(pacman,obstaculos) #estado inicial
-    display(pacman,pastilha,set(es))
+
+    es = modelo(pacman, obstaculos)  # estado inicial
+    display(pacman, pastilha, set(es))
     listaes = es
 
     espacos_espandidos = 0
     nr_iteracoes = 1
 
-        
+    for pacA in iter(lambda: pacman != pastilha, False):
+        caminho = []
+        g = GridProblem(pacA, pastilha, listaes)
+        estrela_start = a_estrelita(g, g.manhatan_goal)[0]
 
-    pacA = pacman
+        for pac in estrela_start.path():
+            listaes.extend(modelo(pacA, obstaculos))
+            if pac.state not in obstaculos:
+                # adicionar pacman
+                pacA = pac.state
+                # adicionar Path
+                caminho.append(pac.state)
+                listaes.extend(modelo(pacA, obstaculos))
+                # procurar diferenca de extend
+                """ for novo_obstaculo in modelo(pacA, obstaculos):
+                    listaes.append(novo_obstaculo) """
 
-    while pacA != pastilha:
-            
-                #copiar grid problem
-                #g= grid....
-            caminho = []
-            g = GridProblem(pacA, pastilha, listaes)
-            estrela_start = a_estrelita(g,g.manhatan_goal)[0]
-            
-            for pac in estrela_start.path():
-                listaes.extend(modelo(pacA,obstaculos))
-                if pac.state not in obstaculos:
-                    #adicionar pacman
-                    pacA=pac.state
-                    #adicionar Path
-                    caminho.append(pac.state)
-                    listaes.extend(modelo(pacA,obstaculos))
-                    #procurar diferenca de extend
-                    """ for novo_obstaculo in modelo(pacA, obstaculos):
-                        listaes.append(novo_obstaculo) """
-                                
-                else:
-                    break
+            else:
+                break
 
-            print("ITERAÇÃO: " + str(nr_iteracoes))
-            nr_iteracoes += 1
-            print(estrela_start.solution())
-            print("Expandidos " + str(len(a_estrelita(g, g.manhatan_goal)[1])))
-            #print(listaes)
-            display(pacA,pastilha,set(listaes),caminho)
-            espacos_espandidos+=len(a_estrelita(g, g.manhatan_goal)[1])
+        print("ITERAÇÃO: " + str(nr_iteracoes))
+        nr_iteracoes += 1
+        print(estrela_start.solution())
+        print("Expandidos " + str(len(a_estrelita(g, g.manhatan_goal)[1])))
+        # print(listaes)
+        display(pacA, pastilha, set(listaes), caminho)
+        espacos_espandidos += len(a_estrelita(g, g.manhatan_goal)[1])
+
     print("FIM: total de expandidos: " + str(espacos_espandidos))
+   
 
 
-        
-         
 pacman=(1,1)
 pastilha=(3,3)
 l = line(2,2,1,0,6)
@@ -160,6 +154,3 @@ fronteira = quadro(0,0,10)
 obstaculos=fronteira | l | c
 #print(planeia_online(pacman,pastilha,obstaculos))
 planeia_online(pacman,pastilha,obstaculos)
-
-
-
