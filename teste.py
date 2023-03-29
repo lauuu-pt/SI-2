@@ -64,11 +64,6 @@ def mais_melhor_bom_procura_graph(problem, f):
                     frontier.append(child)
     return node
 
-def rodeia(self,pacman):
-    x, y = pacman
-    coordenadas = [(x+i, y+j) for i in range(-1, 2) for j in range(-1, 2) if (i, j) != (0, 0)]
-    return [coord for coord in coordenadas if coord not in self.obstaculos]
-
 def a_estrelita(problem, h=None):
     """A* search is best-first graph search with f(n) = g(n)+h(n).
     You need to specify the h function when you call astar_search, or
@@ -127,7 +122,7 @@ def planeia_online(pacman, pastilha, obstaculos):
             
             for pac in estrela_start.path():
                 listaes.extend(modelo(pacA,obstaculos))
-                if pac.state not in obstaculos:
+                if not pac.state  in obstaculos:
                     #adicionar pacman
                     pacA=pac.state
                     #adicionar Path
