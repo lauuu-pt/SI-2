@@ -112,7 +112,7 @@ def planeia_online(pacman, pastilha, obstaculos):
 
     pacA = pacman
 
-    while pacA != pastilha:
+    while pastilha != pacA:
             
                 #copiar grid problem
                 #g= grid....
@@ -129,8 +129,7 @@ def planeia_online(pacman, pastilha, obstaculos):
                     caminho.append(pac.state)
                     listaes.extend(modelo(pacA,obstaculos))
                     #procurar diferenca de extend
-                    """ for novo_obstaculo in modelo(pacA, obstaculos):
-                        listaes.append(novo_obstaculo) """
+                   
                                 
                 else:
                     break
