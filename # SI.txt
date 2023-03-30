@@ -1,0 +1,29 @@
+# SI
+
+primeiro:
+
+problema tp-pacman
+
+search plus a*-não mudar
+
+best… mudar return meter node e explored
+
+planeia online: ciclo while até a uma solução válida, planear(search_plus+perceciona)cada iteração,—> criar um problema novo e chamar o a* ,, dps da solução vais executar for para ver se bate certo break
+
+funcoes a copiar: a*, best
+
+perceciona actions e adaptar chatgpt uma lista para ver os 8 coordenadas ou lado 
+
+no final se acabou ou nao
+
+segundo
+
+dicionario, node e custo   … saber o que está lá dentro
+
+atualizar os heuristicas
+
+ciclo for  : onde atualizamos a posição do pacman e chamamos a função que rodeia o pacman depois vemos a posição do rebuçado e criamos dentro de um ciclo for algo que cria uma seuqencia de pontos desde o pacman até ao rebuçado
+
+chamar rodeia
+
+result:faz o pacman andar

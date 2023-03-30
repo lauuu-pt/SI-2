@@ -1,0 +1,26 @@
+Imagina este modelo:
+
+Iteração 2:
+# . . . 
+# . # .
+# I # .
+# . # .
+# . # .
+# . # .
+# . # .
+# @ # *
+# . . .
+Solution: [S,S,S,S,S,E,E]
+
+As novas heuristicas deste modelo vão ser calculadas da seguinte forma:
+	tamanho da solução (neste caso é 7) - o custo do nó (isto é a distancia que o pacman teve de andar até ao nó em questão)
+	Sendo assim neste exemplo o mapa das heuristicas ficaria assim:
+	# . . . 
+	# . # .
+	# 7 # . 7 - 0(não teve que andar nada visto que está na posição inicial)
+	# 6 # . 7 - 1(path = 1 o pacman teve de andar 1 para chegar a esta casa)
+	# 5 # . 7 - 2(path = 2)
+	# 4 # . ....
+	# 3 # . 7 - 3(path = 3)
+	# @ # *
+	# . . .
