@@ -84,15 +84,10 @@ def modelo(pacman, obstaculos):
                     if (x >= 0 and y >= 0 ):
                         if (x,y) in obstaculos:
                             modelo.append((x, y))
-    """ ob_modelo = set()
-    for pos in modelo:
-            if pos in obstaculos:
-                ob_modelo.add(pos) """
+    
     return modelo
     
-    """ modelo={(pacman[0]+dx,pacman[1]+dy) for dx in [-1,0,1] for dy in [-1,0,1] for dy in [-1,0,1] if(dx !=0 or dy !=0) and ((pacman[0]+dx)>= 0 and(pacman[1]+dy)>=0)}
-    obs_modelo={(x,y) for x,y in modelo if ((x,y) in obstaculos)}
-    return list(obs_modelo) """
+    
 
 
 

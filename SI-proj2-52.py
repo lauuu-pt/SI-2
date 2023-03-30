@@ -137,3 +137,13 @@ def planeia_online(pacman, pastilha, obstaculos):
             display(pacA,pastilha,set(listaes),caminho)
             espacos_espandidos+=len(a_estrelita(g, g.manhatan_goal)[1])
     print("FIM: total de expandidos: " + str(espacos_espandidos))
+
+
+        
+         
+pacman=(1,1)
+pastilha=(3,3)
+l = line(2,2,1,0,6)
+c = line(2,3,0,1,4)
+fronteira = quadro(0,0,10)
+obstaculos=fronteira | l | c
